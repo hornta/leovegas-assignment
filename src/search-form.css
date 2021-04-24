@@ -1,0 +1,22 @@
+form[role="search"] {
+	display: flex;
+	margin-bottom: 1em;
+}
+
+form[role="search"] input {
+	display: block;
+	width: 100%;
+	border: 1px solid #c2c2e2;
+	padding: 0.6em;
+	border-radius: 4px 0 0 4px;
+	border-right: none;
+}
+
+form[role="search"] button {
+	border-radius: 0 4px 4px 0;
+	border: none;
+	background-color: #09a129;
+	color: white;
+	padding: 0 1em;
+	cursor: pointer;
+}

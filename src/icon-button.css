@@ -1,0 +1,9 @@
+.icon-button {
+	background-color: transparent;
+	font-size: 1.5em;
+	padding: 0.3em;
+	border: none;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}

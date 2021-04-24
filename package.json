@@ -1,30 +1,151 @@
 {
-  "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build",
-    "test": "web-test-runner \"src/**/*.test.tsx\"",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
-  },
-  "dependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
-  },
-  "devDependencies": {
-    "@snowpack/plugin-dotenv": "^2.0.5",
-    "@snowpack/plugin-react-refresh": "^2.4.0",
-    "@snowpack/plugin-typescript": "^1.2.0",
-    "@snowpack/web-test-runner-plugin": "^0.2.0",
-    "@testing-library/react": "^11.0.0",
-    "@types/chai": "^4.2.13",
-    "@types/mocha": "^8.2.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/snowpack-env": "^2.3.2",
-    "@web/test-runner": "^0.12.0",
-    "chai": "^4.2.0",
-    "prettier": "^2.0.5",
-    "snowpack": "^3.0.1",
-    "typescript": "^4.0.0"
-  }
+	"scripts": {
+		"start": "snowpack dev",
+		"build": "snowpack build",
+		"test": "web-test-runner \"src/**/*.test.tsx\"",
+		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+		"lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
+	},
+	"dependencies": {
+		"@reduxjs/toolkit": "^1.5.1",
+		"prop-types": "^15.7.2",
+		"react": "^17.0.0",
+		"react-dom": "^17.0.0",
+		"react-icons": "^4.2.0",
+		"react-redux": "^7.2.3",
+		"react-router-dom": "^5.2.0"
+	},
+	"devDependencies": {
+		"@snowpack/plugin-dotenv": "^2.0.5",
+		"@snowpack/plugin-react-refresh": "^2.4.0",
+		"@snowpack/plugin-typescript": "^1.2.0",
+		"@snowpack/web-test-runner-plugin": "^0.2.0",
+		"@testing-library/react": "^11.0.0",
+		"@types/chai": "^4.2.13",
+		"@types/mocha": "^8.2.0",
+		"@types/react": "^17.0.0",
+		"@types/react-dom": "^17.0.0",
+		"@types/react-router-dom": "^5.1.7",
+		"@types/snowpack-env": "^2.3.2",
+		"@typescript-eslint/eslint-plugin": "^4.22.0",
+		"@typescript-eslint/parser": "^4.22.0",
+		"@web/test-runner": "^0.12.0",
+		"chai": "^4.2.0",
+		"eslint": "^7.24.0",
+		"eslint-config-prettier": "^8.2.0",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-jsx-a11y": "^6.4.1",
+		"eslint-plugin-prettier": "^3.4.0",
+		"eslint-plugin-react": "^7.23.2",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"eslint-plugin-unicorn": "^30.0.0",
+		"prettier": "^2.2.1",
+		"snowpack": "^3.0.1",
+		"typescript": "^4.0.0"
+	},
+	"eslintIgnore": [
+		"build/"
+	],
+	"eslintConfig": {
+		"settings": {
+			"react": {
+				"version": "detect"
+			}
+		},
+		"env": {
+			"browser": true,
+			"node": true,
+			"es2021": true
+		},
+		"extends": [
+			"eslint:recommended",
+			"plugin:react/recommended",
+			"plugin:react-hooks/recommended",
+			"plugin:import/errors",
+			"plugin:import/warnings",
+			"plugin:unicorn/recommended",
+			"prettier"
+		],
+		"parserOptions": {
+			"ecmaFeatures": {
+				"jsx": true
+			},
+			"ecmaVersion": 12,
+			"sourceType": "module"
+		},
+		"plugins": [
+			"react"
+		],
+		"rules": {
+			"import/no-unresolved": "off",
+			"arrow-body-style": "error",
+			"arrow-parens": "error",
+			"arrow-spacing": "error",
+			"constructor-super": "error",
+			"generator-star-spacing": "error",
+			"no-class-assign": "error",
+			"no-confusing-arrow": "error",
+			"no-const-assign": "error",
+			"no-dupe-class-members": "error",
+			"no-duplicate-imports": "error",
+			"no-new-symbol": "error",
+			"no-restricted-exports": "off",
+			"no-restricted-imports": "off",
+			"no-this-before-super": "error",
+			"no-useless-computed-key": "error",
+			"no-useless-constructor": "error",
+			"no-useless-rename": "error",
+			"no-var": "error",
+			"object-shorthand": "error",
+			"prefer-arrow-callback": "error",
+			"prefer-const": "error",
+			"prefer-destructuring": "error",
+			"prefer-numeric-literals": "error",
+			"prefer-rest-params": "error",
+			"prefer-spread": "error",
+			"prefer-template": "error",
+			"require-yield": "error",
+			"rest-spread-spacing": "error",
+			"sort-imports": "off",
+			"symbol-description": "error",
+			"template-curly-spacing": "error",
+			"yield-star-spacing": "error",
+			"unicorn/prevent-abbreviations": [
+				"error",
+				{
+					"replacements": {
+						"prop": {
+							"property": false
+						},
+						"props": {
+							"properties": false
+						}
+					}
+				}
+			]
+		},
+		"overrides": [
+			{
+				"files": [
+					"*.ts",
+					"*.tsx"
+				],
+				"extends": [
+					"plugin:@typescript-eslint/recommended",
+					"plugin:@typescript-eslint/recommended-requiring-type-checking",
+					"prettier",
+					"plugin:jsx-a11y/recommended"
+				],
+				"parser": "@typescript-eslint/parser",
+				"parserOptions": {
+					"project": [
+						"./tsconfig.json"
+					]
+				},
+				"rules": {
+					"unicorn/no-null": "off"
+				}
+			}
+		]
+	}
 }
