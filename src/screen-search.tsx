@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 import { SearchResultsListing } from "./search-results-listing.jsx";
 import { SearchForm } from "./search-form.jsx";
 import type { SearchFormChangeHandler } from "./search-form.jsx";
-import { selectCurrentPage } from "./selectors.js";
+import { selectCurrentPageSearch } from "./selectors.js";
 import "./screen-search.css";
-import { useAppDispatch, useAppSelector } from "./store.js";
+import { useAppDispatch, useAppSelector } from "./store/store.js";
 import {
 	loadMoreSearchResults,
 	searchMovies,
@@ -21,7 +21,7 @@ const useSearchTerm = () =>
 	});
 
 const useInitialFetch = (searchTerm: string) => {
-	const currentPage = useAppSelector(selectCurrentPage);
+	const currentPage = useAppSelector(selectCurrentPageSearch);
 
 	const dispatch = useAppDispatch();
 	useEffect(() => {

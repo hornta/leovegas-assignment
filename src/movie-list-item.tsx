@@ -1,6 +1,7 @@
 import React from "react";
 import { IconButton } from "./icon-button.jsx";
 import { RiTimeLine, RiStarLine } from "react-icons/ri";
+import "./movie-list-item.css";
 
 export type MovieListItem = {
 	id: number;
@@ -35,6 +36,9 @@ export const MovieListItem = ({
 			<img
 				src={`https://image.tmdb.org/t/p/w300${poster_path}`}
 				alt={`Poster of ${title}`}
+				loading="lazy"
+				width="120"
+				height="180"
 			/>
 			<div className="movie-list-item-details">
 				<h2>{title}</h2>

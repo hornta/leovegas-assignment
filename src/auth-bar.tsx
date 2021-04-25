@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { getAccountDetails } from "./actions/actions.js";
+import { getAccountDetails } from "./actions/get-account-details.js";
 import "./auth-bar.css";
+import { PageWrapper } from "./page-wrapper.jsx";
 import {
 	selectAccountName,
 	selectFetchingAccount,
 	selectRejectedAccount,
 } from "./selectors.js";
-import { useAppDispatch, useAppSelector } from "./store.js";
+import { useAppDispatch, useAppSelector } from "./store/store.js";
 
 export const AuthBar = (): JSX.Element => {
 	const dispatch = useAppDispatch();
@@ -28,6 +29,8 @@ export const AuthBar = (): JSX.Element => {
 	}
 
 	return (
-		<div className={`auth-bar${rejected ? " auth-bar-error" : ""}`}>{text}</div>
+		<div className={`auth-bar${rejected ? " auth-bar-error" : ""}`}>
+			<PageWrapper>{text}</PageWrapper>
+		</div>
 	);
 };

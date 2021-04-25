@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { ScreenPopular } from "./screen-popular.js";
 import { ScreenSearch } from "./screen-search.jsx";
 import { Route, useLocation, useHistory } from "react-router-dom";
-import { createSession, logout } from "./actions/actions.js";
 import { ScreenLogin } from "./screen-login.jsx";
 import { PrivateRoute } from "./private-route.jsx";
 import { useAuth } from "./utils.js";
 import { TopNav } from "./top-nav.jsx";
 import { ScreenWatchlist } from "./screen-watchlist.jsx";
-import { useAppDispatch } from "./store.js";
+import { useAppDispatch } from "./store/store.js";
+import { PageWrapper } from "./page-wrapper.jsx";
+import { createSession } from "./actions/create-session.js";
+import { logout } from "./actions/actions.js";
 
 const useSession = () => {
 	const location = useLocation();
@@ -57,11 +59,13 @@ export const App = (): JSX.Element => {
 	return (
 		<>
 			<TopNav />
-			<Route exact component={ScreenPopular} path="/" />
-			<Route component={ScreenSearch} path="/search" />
-			<PrivateRoute component={ScreenWatchlist} path="/watchlist" />
-			<Route component={ScreenLogin} path="/login" />
-			<PrivateRoute component={Logout} path="/logout" />
+			<PageWrapper>
+				<Route exact component={ScreenPopular} path="/" />
+				<Route component={ScreenSearch} path="/search" />
+				<PrivateRoute component={ScreenWatchlist} path="/watchlist" />
+				<Route component={ScreenLogin} path="/login" />
+				<PrivateRoute component={Logout} path="/logout" />
+			</PageWrapper>
 		</>
 	);
 };

@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 export enum ButtonVariant {
 	PRIMARY = "primary",
-	SECONDARY = "secondary",
 }
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
@@ -28,5 +27,5 @@ export const Button = ({
 };
 
 Button.propTypes = {
-	variant: PropTypes.oneOf([ButtonVariant.PRIMARY, ButtonVariant.SECONDARY]),
+	variant: PropTypes.oneOf([ButtonVariant.PRIMARY]),
 };

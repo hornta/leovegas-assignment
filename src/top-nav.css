@@ -1,22 +1,28 @@
-.top-nav {
-	background-color: #eae6e5;
-	display: flex;
-	box-shadow: 0 0 transparent, 0 0 transparent,
-		0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+.top-header {
 	position: sticky;
 	top: 0;
 }
 
-.top-nav a {
+.top-nav {
+	background-color: #eae6e5;
+	box-shadow: 0 0 transparent, 0 0 transparent,
+		0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.top-nav-inner {
+	display: flex;
+}
+
+.top-nav-inner a {
 	padding: 1em;
 	display: flex;
 	align-items: center;
 }
 
-.top-nav a svg {
+.top-nav-inner a svg {
 	padding-right: 0.4em;
 }
 
-.top-nav .top-menu-active-item {
+.top-nav-inner .top-menu-active-item {
 	background-color: #8fcb9b;
 }

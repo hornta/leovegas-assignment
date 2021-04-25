@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getAccountDetails } from "../actions/actions.js";
+import { getAccountDetails } from "../actions/get-account-details.js";
 import type { AccountDetails } from "../types/account-details.js";
 
 export interface AccountReducerState {

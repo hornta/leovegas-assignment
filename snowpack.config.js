@@ -29,4 +29,7 @@ module.exports = {
 	buildOptions: {
 		/* ... */
 	},
+	env: {
+		API_URL: "api.google.com",
+	},
 };

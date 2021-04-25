@@ -3,20 +3,21 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "./movie-listing.css";
 import { useAuth } from "./utils.js";
-import { updateWatchList } from "./actions/actions.js";
 import { MovieListItem } from "./movie-list-item.jsx";
 import { Button, ButtonVariant } from "./button.jsx";
-import { selectHasMoreToLoad } from "./selectors.js";
-import { useAppDispatch, useAppSelector } from "./store.js";
+import { useAppDispatch } from "./store/store.js";
+import { updateWatchList } from "./actions/update-watchlist.js";
 
 type MovieListingProps = {
 	movies: MovieListItem[];
 	onLoadMore: () => void;
+	hasMoreToLoad: boolean;
 };
 
 export const MovieListing = ({
 	movies,
 	onLoadMore,
+	hasMoreToLoad,
 }: MovieListingProps): JSX.Element => {
 	const dispatch = useAppDispatch();
 	const authenticated = useAuth();
@@ -32,13 +33,11 @@ export const MovieListing = ({
 
 	const handleFavorite = (movieId: number) => {
 		if (authenticated) {
-			// dispatch();
+			dispatch(updateWatchList({ movieId, add: true }));
 		} else {
 			history.push("/login");
 		}
 	};
-
-	const hasMoreToLoad = useAppSelector(selectHasMoreToLoad);
 
 	return (
 		<>
@@ -69,7 +68,7 @@ MovieListing.propTypes = {
 		PropTypes.shape({
 			id: PropTypes.number.isRequired,
 			title: PropTypes.string.isRequired,
-			poster_path: PropTypes.string.isRequired,
+			poster_path: PropTypes.string,
 		}).isRequired
 	),
 	onLoadMore: PropTypes.func,

@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { createSession, logout } from "../actions/actions.js";
+import { logout } from "../actions/actions.js";
+import { createSession } from "../actions/create-session.js";
 
 export type SessionReducerState = string;
 

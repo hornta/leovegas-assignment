@@ -1,6 +1,5 @@
-import { TMDB_API_KEY } from "./constants.js";
 import { selectSession } from "./selectors.js";
-import { useAppSelector } from "./store.js";
+import { useAppSelector } from "./store/store.js";
 
 export const ensureSuccessfulHttpStatus = (status: number): void => {
 	const isSuccessful = status >= 200 && status < 300;
@@ -10,7 +9,10 @@ export const ensureSuccessfulHttpStatus = (status: number): void => {
 };
 
 export const makeTmdbPath = (subPath: string): string => {
-	const apiKeyQuery = `api_key=${TMDB_API_KEY}`;
+	const apiKeyQuery = `api_key=${
+		// this could probably be typed somewhere else
+		import.meta.env.SNOWPACK_PUBLIC_TMDB_API_KEY as string
+	}`;
 	let path = `https://api.themoviedb.org/3${subPath}`;
 	path += path.includes("?") ? `&${apiKeyQuery}` : `?${apiKeyQuery}`;
 	return path;

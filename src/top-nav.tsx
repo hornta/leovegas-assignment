@@ -6,36 +6,39 @@ import { RiLoginBoxLine, RiLogoutBoxLine } from "react-icons/ri";
 import { NavExpander } from "./nav-expander.jsx";
 import { AuthBar } from "./auth-bar.jsx";
 import { PrivateRoute } from "./private-route.jsx";
+import { PageWrapper } from "./page-wrapper.jsx";
 
 export const TopNav = (): JSX.Element => {
 	const isAuthenticated = useAuth();
 
 	return (
-		<header>
+		<header className="top-header">
 			<PrivateRoute component={AuthBar} />
 			<nav className="top-nav">
-				<NavLink exact to="/" activeClassName="top-menu-active-item">
-					Popular
-				</NavLink>
-				<NavLink to="/search" activeClassName="top-menu-active-item">
-					Search
-				</NavLink>
-				<NavLink to="/watchlist" activeClassName="top-menu-active-item">
-					Watchlist
-				</NavLink>
-				<NavExpander />
-
-				{isAuthenticated && (
-					<NavLink to="/logout" activeClassName="top-menu-active-item">
-						<RiLogoutBoxLine /> Logout
+				<PageWrapper className="top-nav-inner">
+					<NavLink exact to="/" activeClassName="top-menu-active-item">
+						Popular
 					</NavLink>
-				)}
-
-				{!isAuthenticated && (
-					<NavLink to="/login" activeClassName="top-menu-active-item">
-						<RiLoginBoxLine /> Login
+					<NavLink to="/search" activeClassName="top-menu-active-item">
+						Search
 					</NavLink>
-				)}
+					<NavLink to="/watchlist" activeClassName="top-menu-active-item">
+						Watchlist
+					</NavLink>
+					<NavExpander />
+
+					{isAuthenticated && (
+						<NavLink to="/logout" activeClassName="top-menu-active-item">
+							<RiLogoutBoxLine /> Logout
+						</NavLink>
+					)}
+
+					{!isAuthenticated && (
+						<NavLink to="/login" activeClassName="top-menu-active-item">
+							<RiLoginBoxLine /> Login
+						</NavLink>
+					)}
+				</PageWrapper>
 			</nav>
 		</header>
 	);
