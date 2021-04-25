@@ -16,7 +16,7 @@ interface PrivateRouteProps extends RouteProps {
 export const PrivateRoute = ({
 	component: Component,
 	...routeProps
-}: PrivateRouteProps): JSX.Element => {
+}: PrivateRouteProps): any => {
 	const isAuthenticated = useAuth();
 	return (
 		<Route
