@@ -9,10 +9,7 @@ export const ensureSuccessfulHttpStatus = (status: number): void => {
 };
 
 export const makeTmdbPath = (subPath: string): string => {
-	const apiKeyQuery = `api_key=${
-		// this could probably be typed somewhere else
-		import.meta.env.SNOWPACK_PUBLIC_TMDB_API_KEY as string
-	}`;
+	const apiKeyQuery = `api_key=${import.meta.env.SNOWPACK_PUBLIC_TMDB_API_KEY}`;
 	let path = `https://api.themoviedb.org/3${subPath}`;
 	path += path.includes("?") ? `&${apiKeyQuery}` : `?${apiKeyQuery}`;
 	return path;

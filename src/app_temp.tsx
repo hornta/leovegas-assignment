@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScreenPopular } from "./screen-popular.js";
+import { ScreenPopular } from "./screen-popular.jsx";
 import { ScreenSearch } from "./screen-search.jsx";
 import { Route, useLocation, useHistory } from "react-router-dom";
 import { ScreenLogin } from "./screen-login.jsx";

@@ -26,8 +26,7 @@ export const ScreenLogin = () => {
 	useEffect(() => {
 		if (requestToken) {
 			location.href = `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=${
-				// this could probably be typed somewhere else
-				import.meta.env.SNOWPACK_PUBLIC_BASE_PATH as string
+				import.meta.env.SNOWPACK_PUBLIC_BASE_PATH
 			}`;
 		}
 	}, [requestToken]);
