@@ -1,4 +1,4 @@
-export type SearchResultItem = {
+export type MovieListItem = {
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];

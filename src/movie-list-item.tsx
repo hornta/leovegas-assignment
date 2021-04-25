@@ -6,6 +6,7 @@ export type MovieListItem = {
 	id: number;
 	title: string;
 	poster_path: string;
+	release_date: string;
 };
 
 interface MovieListItemProps extends MovieListItem {
@@ -17,6 +18,7 @@ export const MovieListItem = ({
 	id,
 	title,
 	poster_path,
+	release_date,
 	onFavorite,
 	onWatchLater,
 }: MovieListItemProps): JSX.Element => {
@@ -36,8 +38,17 @@ export const MovieListItem = ({
 			/>
 			<div className="movie-list-item-details">
 				<h2>{title}</h2>
-				<IconButton onClick={handleWatchLater} icon={RiTimeLine} />
-				<IconButton onClick={handleFavorite} icon={RiStarLine} />
+				<time className="movie-list-item-release">{release_date}</time>
+				<IconButton
+					onClick={handleWatchLater}
+					icon={RiTimeLine}
+					aria-label="Add to watchlist"
+				/>
+				<IconButton
+					onClick={handleFavorite}
+					icon={RiStarLine}
+					aria-label="Mark as favorite"
+				/>
 			</div>
 		</li>
 	);

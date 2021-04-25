@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
 import { TMDB_API_KEY } from "./constants.js";
 import { selectSession } from "./selectors.js";
+import { useAppSelector } from "./store.js";
 
 export const ensureSuccessfulHttpStatus = (status: number): void => {
 	const isSuccessful = status >= 200 && status < 300;
@@ -17,6 +17,6 @@ export const makeTmdbPath = (subPath: string): string => {
 };
 
 export const useAuth = (): boolean => {
-	const sessionId = useSelector(selectSession);
+	const sessionId = useAppSelector(selectSession);
 	return sessionId === "" ? false : true;
 };

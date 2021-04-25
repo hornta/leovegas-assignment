@@ -9,7 +9,7 @@ type CreateRequestTokenResponse = {
 export const ScreenLogin = () => {
 	const [requestToken, setRequestToken] = useState<string>();
 
-	const handleLogin = async (): void => {
+	const handleLogin = async () => {
 		try {
 			const response = await fetch(makeTmdbPath("/authentication/token/new"));
 			const {

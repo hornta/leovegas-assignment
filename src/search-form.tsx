@@ -1,7 +1,7 @@
 import React, { FocusEvent, FormEvent, KeyboardEvent } from "react";
-import { useSelector } from "react-redux";
-import { selectIsFetching } from "./selectors.ts";
 import "./search-form.css";
+import { selectIsFetching } from "./selectors.js";
+import { useAppSelector } from "./store.js";
 
 export type SearchFormChangeHandler = (searchTerm: string) => void;
 
@@ -15,11 +15,13 @@ const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
 	event.currentTarget.select();
 };
 
-export const SearchForm: React.FC = ({
+export const SearchForm = ({
 	onSearch,
 	onChange,
 	searchTerm,
 }: SearchFormProps): JSX.Element => {
+	const disableSubmit = useAppSelector(selectIsFetching);
+
 	const handleSubmit = (event: FormEvent): void => {
 		event.preventDefault();
 		onSearch();
@@ -38,8 +40,6 @@ export const SearchForm: React.FC = ({
 		}
 	};
 
-	const disableSubmit = useSelector(selectIsFetching);
-
 	return (
 		<form role="search" onSubmit={handleSubmit}>
 			<input
@@ -49,6 +49,7 @@ export const SearchForm: React.FC = ({
 				onFocus={handleFocus}
 				onChange={handleInputChange}
 				required
+				placeholder="Example: Iron Man"
 			/>
 			<button type="submit" disabled={disableSubmit}>
 				Search

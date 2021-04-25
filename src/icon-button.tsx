@@ -10,6 +10,6 @@ export const IconButton = ({
 	...props
 }: IconButtonProps): JSX.Element => (
 	<button type="button" className="icon-button" {...props}>
-		<IconComponent />
+		<IconComponent aria-hidden="true" />
 	</button>
 );

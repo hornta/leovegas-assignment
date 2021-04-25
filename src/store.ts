@@ -1,19 +1,18 @@
 import {
 	AnyAction,
-	AsyncThunkAction,
 	configureStore,
 	isRejected,
 	Middleware,
-	ThunkAction,
 } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
-import { createSession, logout } from "./actions.js";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { createSession, logout } from "./actions/actions.js";
 import { rootReducer, RootReducerState } from "./reducers/index.js";
 import { SessionLocalStorageKey } from "./reducers/session-id-reducer.js";
 
 const loggerMw: Middleware<Record<string, never>, RootReducerState> = () => (
 	next
-) => (action: ThunkAction) => {
+	// eslint-disable-next-line unicorn/consistent-function-scoping
+) => (action: AnyAction) => {
 	if (isRejected(action)) {
 		console.error(action);
 	}
@@ -23,6 +22,7 @@ const loggerMw: Middleware<Record<string, never>, RootReducerState> = () => (
 const persistSessionMw: Middleware<
 	Record<string, never>,
 	RootReducerState
+	// eslint-disable-next-line unicorn/consistent-function-scoping
 > = () => (next) => (action: AnyAction) => {
 	// eslint-disable-next-line unicorn/prefer-regexp-test
 	if (createSession.fulfilled.match(action)) {
@@ -42,3 +42,9 @@ export const store = configureStore({
 		persistSessionMw,
 	],
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

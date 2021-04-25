@@ -1,28 +1,30 @@
-import PropTypes, { InferProps } from "prop-types";
+import PropTypes from "prop-types";
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./movie-listing.css";
 import { useAuth } from "./utils.js";
-import { addToWatchLaterList } from "./actions.js";
+import { updateWatchList } from "./actions/actions.js";
 import { MovieListItem } from "./movie-list-item.jsx";
+import { Button, ButtonVariant } from "./button.jsx";
+import { selectHasMoreToLoad } from "./selectors.js";
+import { useAppDispatch, useAppSelector } from "./store.js";
 
 type MovieListingProps = {
 	movies: MovieListItem[];
+	onLoadMore: () => void;
 };
 
-type MovieListingProperties = InferProps<typeof MovieListingPropTypes>;
-
-export const MovieListing: React.FC<MovieListingProperties> = ({
+export const MovieListing = ({
 	movies,
-}: MovieListingProps) => {
-	const dispatch = useDispatch();
+	onLoadMore,
+}: MovieListingProps): JSX.Element => {
+	const dispatch = useAppDispatch();
 	const authenticated = useAuth();
 	const history = useHistory();
 
 	const handleAddToWatchlist = (movieId: number) => {
 		if (authenticated) {
-			dispatch(addToWatchLaterList(movieId));
+			dispatch(updateWatchList({ movieId, add: true }));
 		} else {
 			history.push("/login");
 		}
@@ -30,23 +32,35 @@ export const MovieListing: React.FC<MovieListingProperties> = ({
 
 	const handleFavorite = (movieId: number) => {
 		if (authenticated) {
-			dispatch();
+			// dispatch();
 		} else {
 			history.push("/login");
 		}
 	};
 
+	const hasMoreToLoad = useAppSelector(selectHasMoreToLoad);
+
 	return (
-		<ul className="movie-list">
-			{movies.map((movie) => (
-				<MovieListItem
-					key={movie.id}
-					{...movie}
-					onFavorite={handleFavorite}
-					onWatchLater={handleAddToWatchlist}
-				/>
-			))}
-		</ul>
+		<>
+			<ul className="movie-list">
+				{movies.map((movie) => (
+					<MovieListItem
+						key={movie.id}
+						{...movie}
+						onFavorite={handleFavorite}
+						onWatchLater={handleAddToWatchlist}
+					/>
+				))}
+			</ul>
+
+			<div className="load-more-container">
+				{hasMoreToLoad && (
+					<Button variant={ButtonVariant.PRIMARY} onClick={onLoadMore}>
+						Load more
+					</Button>
+				)}
+			</div>
+		</>
 	);
 };
 

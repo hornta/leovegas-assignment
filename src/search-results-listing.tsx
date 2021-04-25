@@ -1,30 +1,27 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { FC, ReactNode } from "react";
 import { MovieListing } from "./movie-listing.jsx";
-import { selectHasMoreToLoad } from "./selectors.js";
 import {
 	selectIsFetching,
-	selectKeyword,
+	selectSearchTerm,
 	selectSearchResults,
 	selectTotalResults,
-} from "./selectors.ts";
+} from "./selectors";
 import "./search-results-listing.css";
-import { Button, ButtonVariant } from "./button.jsx";
+import { useAppSelector } from "./store.js";
 
 type SearchResultsListingProps = {
 	onLoadMore: () => void;
 };
 
-export const SearchResultsListing: React.FC = ({
+export const SearchResultsListing = ({
 	onLoadMore,
-}: SearchResultsListingProps) => {
-	const searchResults = useSelector(selectSearchResults);
-	const keyword = useSelector(selectKeyword);
-	const totalResults = useSelector(selectTotalResults);
-	const isFetching = useSelector(selectIsFetching);
-	const hasMoreToLoad = useSelector(selectHasMoreToLoad);
+}: SearchResultsListingProps): any => {
+	const searchResults = useAppSelector(selectSearchResults);
+	const searchTerm = useAppSelector(selectSearchTerm);
+	const totalResults = useAppSelector(selectTotalResults);
+	const isFetching = useAppSelector(selectIsFetching);
 
-	if (keyword.length === 0) {
+	if (searchTerm.length === 0) {
 		return null;
 	}
 
@@ -35,16 +32,10 @@ export const SearchResultsListing: React.FC = ({
 	return (
 		<>
 			<div className="search-results-listing">
-				{totalResults} results for <strong>&quot;{keyword}&quot;</strong> found
+				{totalResults} results for <strong>&quot;{searchTerm}&quot;</strong>{" "}
+				found
 			</div>
-			<MovieListing movies={searchResults} />
-			<div className="load-more-container">
-				{hasMoreToLoad && (
-					<Button variant={ButtonVariant.PRIMARY} onClick={onLoadMore}>
-						Load more
-					</Button>
-				)}
-			</div>
+			<MovieListing movies={searchResults} onLoadMore={onLoadMore} />
 		</>
 	);
 };

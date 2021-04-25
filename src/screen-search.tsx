@@ -1,26 +1,29 @@
-import React, { FC, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { loadMoreSearchResults, searchMovies } from "./actions.js";
 import { SearchResultsListing } from "./search-results-listing.jsx";
-import { SearchForm } from "./search-form.tsx";
+import { SearchForm } from "./search-form.jsx";
 import type { SearchFormChangeHandler } from "./search-form.jsx";
 import { selectCurrentPage } from "./selectors.js";
 import "./screen-search.css";
+import { useAppDispatch, useAppSelector } from "./store.js";
+import {
+	loadMoreSearchResults,
+	searchMovies,
+} from "./actions/search-actions.js";
 
 const useSearchTerm = () =>
 	useState<string>(() => {
 		const search = new URLSearchParams(location.search);
 		if (search.has("search_term")) {
-			return search.get("search_term");
+			return search.get("search_term") as string;
 		}
 		return "";
 	});
 
 const useInitialFetch = (searchTerm: string) => {
-	const currentPage = useSelector(selectCurrentPage);
+	const currentPage = useAppSelector(selectCurrentPage);
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	useEffect(() => {
 		if (currentPage === 0 && searchTerm.length > 0) {
 			dispatch(searchMovies(searchTerm));
@@ -30,9 +33,9 @@ const useInitialFetch = (searchTerm: string) => {
 	}, [dispatch, currentPage]);
 };
 
-export const ScreenSearch = (): JSX.Element => {
+export const ScreenSearch = () => {
 	const [searchTerm, setSearchTerm] = useSearchTerm();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const history = useHistory();
 
 	useInitialFetch(searchTerm);
@@ -56,7 +59,11 @@ export const ScreenSearch = (): JSX.Element => {
 
 	return (
 		<div className="screen-search">
-			<SearchForm onSearch={performSearch} onChange={handleChangeSearchTerm} />
+			<SearchForm
+				onSearch={performSearch}
+				searchTerm={searchTerm}
+				onChange={handleChangeSearchTerm}
+			/>
 			<SearchResultsListing onLoadMore={handleLoadMore} />
 		</div>
 	);

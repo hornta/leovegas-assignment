@@ -143,7 +143,10 @@
 					]
 				},
 				"rules": {
-					"unicorn/no-null": "off"
+					"unicorn/no-null": "off",
+					"@typescript-eslint/no-floating-promises": "off",
+					"@typescript-eslint/explicit-module-boundary-types": "off",
+					"@typescript-eslint/no-explicit-any": "off"
 				}
 			}
 		]

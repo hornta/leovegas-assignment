@@ -2,21 +2,20 @@ import React, { useEffect, useState } from "react";
 import { ScreenPopular } from "./screen-popular.js";
 import { ScreenSearch } from "./screen-search.jsx";
 import { Route, useLocation, useHistory } from "react-router-dom";
-import { ScreenMovie } from "./screen-movie.jsx";
-import { useDispatch } from "react-redux";
-import { createSession, logout } from "./actions.js";
+import { createSession, logout } from "./actions/actions.js";
 import { ScreenLogin } from "./screen-login.jsx";
 import { PrivateRoute } from "./private-route.jsx";
 import { useAuth } from "./utils.js";
 import { TopNav } from "./top-nav.jsx";
-import { AuthBar } from "./auth-bar.jsx";
+import { ScreenWatchlist } from "./screen-watchlist.jsx";
+import { useAppDispatch } from "./store.js";
 
 const useSession = () => {
 	const location = useLocation();
 	const history = useHistory();
 	const isAuthenticated = useAuth();
 	const [requestToken, setRequestToken] = useState<string>();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		const searchParameters = new URLSearchParams(location.search);
@@ -26,7 +25,7 @@ const useSession = () => {
 			searchParameters.get("approved") === "true"
 		) {
 			searchParameters.delete("approved");
-			const requestToken = searchParameters.get("request_token");
+			const requestToken = searchParameters.get("request_token") as string;
 			searchParameters.delete("request_token");
 			setRequestToken(requestToken);
 			history.replace({
@@ -43,7 +42,7 @@ const useSession = () => {
 };
 
 const Logout = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const history = useHistory();
 	useEffect(() => {
 		dispatch(logout());
@@ -57,12 +56,10 @@ export const App = (): JSX.Element => {
 
 	return (
 		<>
-			<PrivateRoute component={AuthBar} />
 			<TopNav />
 			<Route exact component={ScreenPopular} path="/" />
 			<Route component={ScreenSearch} path="/search" />
-			<PrivateRoute component={ScreenSearch} path="/watchlist" />
-			<Route component={ScreenMovie} path="/movie/:id([0-9]+)" />
+			<PrivateRoute component={ScreenWatchlist} path="/watchlist" />
 			<Route component={ScreenLogin} path="/login" />
 			<PrivateRoute component={Logout} path="/logout" />
 		</>

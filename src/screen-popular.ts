@@ -1,3 +1,1 @@
-import type React from "react";
-
-export const ScreenPopular: React.FC = () => "ScreenPopular";
+export const ScreenPopular = (): any => "ScreenPopular";

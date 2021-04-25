@@ -3,3 +3,8 @@
 	color: white;
 	padding: 0.4em;
 }
+
+.auth-bar-error {
+	color: red;
+	background-color: black;
+}
