@@ -10,6 +10,7 @@ import {
 	loadMoreWatchlist,
 } from "../actions/watchlist-actions.js";
 import { accountReducer, AccountReducerState } from "./account-reducer.js";
+import { genresReducer, GenresReducerState } from "./genres-reducer.js";
 import {
 	makeMovieListReducer,
 	MovieListReducerState,
@@ -27,6 +28,7 @@ export interface RootReducerState extends DefaultRootState {
 	popular: MovieListReducerState;
 	session: SessionReducerState;
 	account: AccountReducerState;
+	genres: GenresReducerState;
 }
 
 export const rootReducer = combineReducers({
@@ -36,4 +38,5 @@ export const rootReducer = combineReducers({
 	popular: makeMovieListReducer(fetchPopular, loadMorePopular),
 	session: sessionReducer,
 	account: accountReducer,
+	genres: genresReducer,
 });

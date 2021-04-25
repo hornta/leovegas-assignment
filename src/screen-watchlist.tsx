@@ -7,14 +7,13 @@ import {
 import { MovieListing } from "./movie-listing.jsx";
 import "./screen-watchlist.css";
 import {
-	selectHasMoreSearchResultsToLoad,
 	selectHasMoreWatchlistToLoad,
-	selectWatchlist,
+	selectWatchlistMovies,
 } from "./selectors.js";
 import { useAppDispatch, useAppSelector } from "./store/store.js";
 
 export const ScreenWatchlist = (): JSX.Element => {
-	const movies = useAppSelector(selectWatchlist);
+	const movies = useAppSelector(selectWatchlistMovies);
 
 	const dispatch = useAppDispatch();
 	useEffect(() => {

@@ -11,6 +11,7 @@ import { useAppDispatch } from "./store/store.js";
 import { PageWrapper } from "./page-wrapper.jsx";
 import { createSession } from "./actions/create-session.js";
 import { logout } from "./actions/actions.js";
+import { fetchGenres } from "./actions/fetch-genres.js";
 
 const useSession = () => {
 	const location = useLocation();
@@ -43,6 +44,13 @@ const useSession = () => {
 	}, [dispatch, requestToken, isAuthenticated]);
 };
 
+const useGenres = () => {
+	const dispatch = useAppDispatch();
+	useEffect(() => {
+		dispatch(fetchGenres());
+	}, [dispatch]);
+};
+
 const Logout = () => {
 	const dispatch = useAppDispatch();
 	const history = useHistory();
@@ -55,6 +63,7 @@ const Logout = () => {
 
 export const App = (): JSX.Element => {
 	useSession();
+	useGenres();
 
 	return (
 		<>

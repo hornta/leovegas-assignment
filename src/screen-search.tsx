@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { SearchResultsListing } from "./search-results-listing.jsx";
-import { SearchForm } from "./search-form.jsx";
-import type { SearchFormChangeHandler } from "./search-form.jsx";
+import { SearchForm, SearchFormChangeHandler } from "./search-form.jsx";
 import { selectCurrentPageSearch } from "./selectors.js";
 import "./screen-search.css";
 import { useAppDispatch, useAppSelector } from "./store/store.js";

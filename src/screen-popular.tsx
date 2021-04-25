@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import { fetchPopular, loadMorePopular } from "./actions/popular-actions.js";
 import { MovieListing } from "./movie-listing.jsx";
-import { selectHasMorePopularToLoad, selectPopular } from "./selectors.js";
+import {
+	selectHasMorePopularToLoad,
+	selectPopularMovies,
+} from "./selectors.js";
 import { useAppDispatch, useAppSelector } from "./store/store.js";
 import "./screen-popular.css";
 1;
 
 export const ScreenPopular = () => {
-	const movies = useAppSelector(selectPopular);
+	const movies = useAppSelector(selectPopularMovies);
 
 	const dispatch = useAppDispatch();
 	useEffect(() => {

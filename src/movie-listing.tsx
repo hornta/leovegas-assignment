@@ -7,9 +7,10 @@ import { MovieListItem } from "./movie-list-item.jsx";
 import { Button, ButtonVariant } from "./button.jsx";
 import { useAppDispatch } from "./store/store.js";
 import { updateWatchList } from "./actions/update-watchlist.js";
+import type { MovieWithGenres } from "./types/movie-list-item.js";
 
 type MovieListingProps = {
-	movies: MovieListItem[];
+	movies: MovieWithGenres[];
 	onLoadMore: () => void;
 	hasMoreToLoad: boolean;
 };
@@ -42,10 +43,11 @@ export const MovieListing = ({
 	return (
 		<>
 			<ul className="movie-list">
+				{/* perf could be improved by using something like react-virtualized */}
 				{movies.map((movie) => (
 					<MovieListItem
 						key={movie.id}
-						{...movie}
+						movie={movie}
 						onFavorite={handleFavorite}
 						onWatchLater={handleAddToWatchlist}
 					/>

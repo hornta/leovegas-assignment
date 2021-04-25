@@ -1,11 +1,11 @@
-import React, { FC, ReactNode } from "react";
+import React from "react";
 import { MovieListing } from "./movie-listing.jsx";
 import {
 	selectIsFetching,
 	selectSearchTerm,
-	selectSearchResults,
 	selectTotalResults,
 	selectHasMoreSearchResultsToLoad,
+	selectSearchMovies,
 } from "./selectors";
 import "./search-results-listing.css";
 import { useAppSelector } from "./store/store.js";
@@ -17,7 +17,7 @@ type SearchResultsListingProps = {
 export const SearchResultsListing = ({
 	onLoadMore,
 }: SearchResultsListingProps): any => {
-	const searchResults = useAppSelector(selectSearchResults);
+	const searchResults = useAppSelector(selectSearchMovies);
 	const searchTerm = useAppSelector(selectSearchTerm);
 	const totalResults = useAppSelector(selectTotalResults);
 	const isFetching = useAppSelector(selectIsFetching);

@@ -1,4 +1,4 @@
-export type MovieListItem = {
+export interface Movie {
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];
@@ -13,4 +13,8 @@ export type MovieListItem = {
 	video: boolean;
 	vote_average: number;
 	vote_count: number;
-};
+}
+
+export interface MovieWithGenres extends Movie {
+	genre_names: string[];
+}

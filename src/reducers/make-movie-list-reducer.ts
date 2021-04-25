@@ -1,5 +1,5 @@
 import { AsyncThunk, createReducer, Reducer } from "@reduxjs/toolkit";
-import type { MovieListItem } from "../types/movie-list-item.js";
+import type { Movie } from "../types/movie-list-item.js";
 import type { MovieList } from "../types/movie-list.js";
 
 export type MovieListReducerState = {
@@ -10,7 +10,7 @@ export type MovieListReducerState = {
 	totalPages: number;
 	totalResults: number;
 	currentPage: number;
-	results: MovieListItem[];
+	results: Movie[];
 };
 
 export const initialMovieListState: MovieListReducerState = {
@@ -23,7 +23,7 @@ export const initialMovieListState: MovieListReducerState = {
 	totalPages: 0,
 	totalResults: 0,
 	currentPage: 0,
-	results: [] as MovieListItem[],
+	results: [] as Movie[],
 };
 
 const handleFulfilledResults = (
