@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
-import { fetchPopular, loadMorePopular } from "./actions/popular-actions.js";
-import { MovieListing } from "./movie-listing.jsx";
+import {
+	fetchPopular,
+	loadMorePopular,
+} from "../../actions/popular-actions.js";
+import { MovieListing } from "../../movie-listing.jsx";
 import {
 	selectHasMorePopularToLoad,
 	selectPopularMovies,
-} from "./selectors.js";
-import { useAppDispatch, useAppSelector } from "./store/store.js";
+} from "../../selectors.js";
+import { useAppDispatch, useAppSelector } from "../../store/store.js";
 import "./screen-popular.css";
 1;
 

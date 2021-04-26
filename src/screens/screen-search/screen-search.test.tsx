@@ -2,9 +2,9 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { ScreenSearch } from "./screen-search";
 import userEvent from "@testing-library/user-event";
-import { makeStore } from "./store/store.js";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { makeStore } from "../../store/store.js";
 
 describe("<ScreenSearch>", () => {
 	it("perform a search", () => {

@@ -1,7 +1,7 @@
 import React, { FocusEvent, FormEvent, KeyboardEvent } from "react";
+import { selectIsFetching } from "../../selectors.js";
+import { useAppSelector } from "../../store/store.js";
 import "./search-form.css";
-import { selectIsFetching } from "./selectors.js";
-import { useAppSelector } from "./store/store.js";
 
 export type SearchFormChangeHandler = (searchTerm: string) => void;
 

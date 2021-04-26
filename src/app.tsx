@@ -1,18 +1,18 @@
 import React, { useEffect, useState, createContext } from "react";
-import { ScreenPopular } from "./screen-popular.jsx";
-import { ScreenSearch } from "./screen-search.jsx";
+import { ScreenPopular } from "./screens/screen-popular/screen-popular.jsx";
 import { Route, useLocation, useHistory } from "react-router-dom";
-import { ScreenLogin } from "./screen-login.jsx";
+import { ScreenLogin } from "./screens/screen-login/screen-login.jsx";
 import { PrivateRoute } from "./private-route.jsx";
 import { useAuth } from "./utils.js";
 import { TopNav } from "./top-nav.jsx";
-import { ScreenWatchlist } from "./screen-watchlist.jsx";
+import { ScreenWatchlist } from "./screens/screen-watchlist/screen-watchlist.jsx";
 import { useAppDispatch } from "./store/store.js";
 import { PageWrapper } from "./page-wrapper.jsx";
 import { createSession } from "./actions/create-session.js";
 import { logout } from "./actions/actions.js";
 import { fetchGenres } from "./actions/fetch-genres.js";
-import { ScreenMovie } from "./screen-movie.jsx";
+import { ScreenMovie } from "./screens/screen-movie-detail/screen-movie.jsx";
+import { ScreenSearch } from "./screens/screen-search/screen-search.jsx";
 
 const useSession = () => {
 	const location = useLocation();

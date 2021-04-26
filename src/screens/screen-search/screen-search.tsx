@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { SearchResultsListing } from "./search-results-listing.jsx";
 import { SearchForm, SearchFormChangeHandler } from "./search-form.jsx";
-import { selectCurrentPageSearch } from "./selectors.js";
 import "./screen-search.css";
-import { useAppDispatch, useAppSelector } from "./store/store.js";
+import { useAppDispatch, useAppSelector } from "../../store/store.js";
+import { selectCurrentPageSearch } from "../../selectors.js";
 import {
 	loadMoreSearchResults,
 	searchMovies,
-} from "./actions/search-actions.js";
+} from "../../actions/search-actions.js";
 
 const useSearchTerm = () =>
 	useState<string>(() => {

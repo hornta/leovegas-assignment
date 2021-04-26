@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, ButtonVariant } from "./button.jsx";
-import { makeTmdbPath } from "./utils.js";
+import { Button, ButtonVariant } from "../../button.jsx";
+import { makeTmdbPath } from "../../utils.js";
 import "./screen-login.css";
 
 type CreateRequestTokenResponse = {

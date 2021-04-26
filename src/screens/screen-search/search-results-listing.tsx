@@ -1,14 +1,14 @@
 import React from "react";
-import { MovieListing } from "./movie-listing.jsx";
+import "./search-results-listing.css";
+import { useAppSelector } from "../../store/store.js";
 import {
+	selectHasMoreSearchResultsToLoad,
 	selectIsFetching,
+	selectSearchMovies,
 	selectSearchTerm,
 	selectTotalResults,
-	selectHasMoreSearchResultsToLoad,
-	selectSearchMovies,
-} from "./selectors";
-import "./search-results-listing.css";
-import { useAppSelector } from "./store/store.js";
+} from "../../selectors.js";
+import { MovieListing } from "../../movie-listing";
 
 type SearchResultsListingProps = {
 	onLoadMore: () => void;

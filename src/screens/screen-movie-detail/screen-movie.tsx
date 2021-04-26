@@ -5,19 +5,19 @@ import {
 	selectIsFetchingMovie,
 	selectMovie,
 	selectMovieAccountStates,
-} from "./selectors.js";
-import { useAppDispatch, useAppSelector } from "./store/store.js";
-import { makeTmdbImagePath, useAuth } from "./utils.js";
+} from "../../selectors.js";
+import { useAppDispatch, useAppSelector } from "../../store/store.js";
+import { makeTmdbImagePath, useAuth } from "../../utils.js";
 import useResizeObserver from "@react-hook/resize-observer";
-import { IconButton } from "./icon-button";
-import { HeaderContext } from "./app.jsx";
+import { IconButton } from "../../icon-button";
+import { HeaderContext } from "../../app.jsx";
 import { RiStarLine, RiTimeLine, RiStarFill, RiTimeFill } from "react-icons/ri";
-import { PageWrapper } from "./page-wrapper.jsx";
-import { MovieGenres } from "./movie-genres.jsx";
-import { updateWatchList } from "./actions/update-watchlist.js";
-import { markAsFavorite } from "./actions/mark-as-favorite.js";
-import { fetchMovieAccountStates } from "./actions/fetch-movie-account-states.js";
-import { fetchMovie } from "./actions/fetch-movie.js";
+import { PageWrapper } from "../../page-wrapper.jsx";
+import { MovieGenres } from "../../movie-genres.jsx";
+import { updateWatchList } from "../../actions/update-watchlist.js";
+import { markAsFavorite } from "../../actions/mark-as-favorite.js";
+import { fetchMovieAccountStates } from "../../actions/fetch-movie-account-states.js";
+import { fetchMovie } from "../../actions/fetch-movie.js";
 
 const useHeaderHeight = () => {
 	const header = useContext(HeaderContext);
