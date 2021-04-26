@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { ScreenPopular } from "./screen-popular.jsx";
 import { ScreenSearch } from "./screen-search.jsx";
 import { Route, useLocation, useHistory } from "react-router-dom";
@@ -12,6 +12,7 @@ import { PageWrapper } from "./page-wrapper.jsx";
 import { createSession } from "./actions/create-session.js";
 import { logout } from "./actions/actions.js";
 import { fetchGenres } from "./actions/fetch-genres.js";
+import { ScreenMovie } from "./screen-movie.jsx";
 
 const useSession = () => {
 	const location = useLocation();
@@ -61,20 +62,34 @@ const Logout = () => {
 	return null;
 };
 
+type HeaderContextValue = HTMLElement | null;
+export const HeaderContext = createContext<HeaderContextValue>(null);
+
 export const App = (): JSX.Element => {
 	useSession();
 	useGenres();
 
+	const [headerElement, setHeaderElement] = useState<HeaderContextValue>(null);
+
 	return (
 		<>
-			<TopNav />
-			<PageWrapper>
-				<Route exact component={ScreenPopular} path="/" />
-				<Route component={ScreenSearch} path="/search" />
-				<PrivateRoute component={ScreenWatchlist} path="/watchlist" />
-				<Route component={ScreenLogin} path="/login" />
-				<PrivateRoute component={Logout} path="/logout" />
-			</PageWrapper>
+			<TopNav
+				ref={(node) => {
+					if (node) {
+						setHeaderElement(node);
+					}
+				}}
+			/>
+			<HeaderContext.Provider value={headerElement}>
+				<PageWrapper>
+					<Route exact component={ScreenPopular} path="/" />
+					<Route component={ScreenSearch} path="/search" />
+					<PrivateRoute component={ScreenWatchlist} path="/watchlist" />
+					<Route component={ScreenLogin} path="/login" />
+					<PrivateRoute component={Logout} path="/logout" />
+				</PageWrapper>
+				<Route component={ScreenMovie} path="/movie/:movieId([0-9]+)" />
+			</HeaderContext.Provider>
 		</>
 	);
 };

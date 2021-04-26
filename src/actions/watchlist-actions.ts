@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import type { RootReducerState } from "../reducers/index.js";
+import type { RootState } from "../reducers/index.js";
 import type { MovieList } from "../types/movie-list.js";
 import { ensureSuccessfulHttpStatus, makeTmdbPath } from "../utils.js";
 
@@ -19,7 +19,7 @@ const fetchWatchlistApi = async (
 export const fetchWatchlist = createAsyncThunk<
 	MovieList,
 	void,
-	{ state: RootReducerState }
+	{ state: RootState }
 >("watchlist/fetch", (_, { getState }) =>
 	fetchWatchlistApi(getState().session, 1)
 );
@@ -27,7 +27,7 @@ export const fetchWatchlist = createAsyncThunk<
 export const loadMoreWatchlist = createAsyncThunk<
 	MovieList,
 	void,
-	{ state: RootReducerState }
+	{ state: RootState }
 >("watchlist/loadMore", async (_, { getState }) =>
 	fetchWatchlistApi(getState().session, getState().watchlist.currentPage + 1)
 );

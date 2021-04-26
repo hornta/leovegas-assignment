@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import type { RootState } from "./store/store.js";
+import type { RootState } from "./reducers/index.js";
 import type { Genres } from "./types/genres.js";
 import type { Movie, MovieWithGenres } from "./types/movie-list-item.js";
 
@@ -80,3 +80,9 @@ export const selectPopularMovies = createSelector(
 	selectGenres,
 	selectWithGenres
 );
+
+export const selectMovie = (state: RootState) => state.movie.movie;
+export const selectMovieAccountStates = (state: RootState) =>
+	state.movie.movieAccountStates;
+export const selectIsFetchingMovie = (state: RootState) =>
+	state.movie.fetchingMovie;

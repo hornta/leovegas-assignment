@@ -2,14 +2,19 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { RootState } from "../reducers/index.js";
 import { ensureSuccessfulHttpStatus, makeTmdbPath } from "../utils.js";
 
-export const updateWatchList = createAsyncThunk<
+type MarkAsFavoriteArgument = {
+	movieId: number;
+	favorite: boolean;
+};
+
+export const markAsFavorite = createAsyncThunk<
 	void,
-	{ movieId: number; add: boolean },
+	MarkAsFavoriteArgument,
 	{ state: RootState }
->("watchlist/add", async ({ movieId, add }, { getState }) => {
+>("markAsFavorite", async ({ movieId, favorite }, { getState }) => {
 	const response = await fetch(
 		makeTmdbPath(
-			`/account/${getState().account.account.id}/watchlist?session_id=${
+			`/account/${getState().account.account.id}/favorite?session_id=${
 				getState().session
 			}`
 		),
@@ -18,7 +23,7 @@ export const updateWatchList = createAsyncThunk<
 			body: JSON.stringify({
 				media_type: "movie",
 				media_id: movieId,
-				watchlist: add,
+				favorite,
 			}),
 			headers: {
 				"Content-Type": "application/json",

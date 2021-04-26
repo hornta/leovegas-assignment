@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import type { RootReducerState } from "../reducers/index.js";
+import type { RootState } from "../reducers/index.js";
 import type { MovieList } from "../types/movie-list.js";
 import { ensureSuccessfulHttpStatus, makeTmdbPath } from "../utils.js";
 
@@ -22,7 +22,7 @@ export const searchMovies = createAsyncThunk(
 export const loadMoreSearchResults = createAsyncThunk<
 	MovieList,
 	unknown,
-	{ state: RootReducerState }
+	{ state: RootState }
 >("search/loadMore", async (_, { getState }) =>
 	searchMoviesApi(getState().search.currentPage + 1, getState().searchTerm)
 );

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import type { RootReducerState } from "../reducers/index.js";
+import type { RootState } from "../reducers/index.js";
 import type { MovieList } from "../types/movie-list.js";
 import { ensureSuccessfulHttpStatus, makeTmdbPath } from "../utils.js";
 
@@ -19,13 +19,13 @@ const fetchPopularApi = async (
 export const fetchPopular = createAsyncThunk<
 	MovieList,
 	void,
-	{ state: RootReducerState }
+	{ state: RootState }
 >("popular/fetch", (_, { getState }) => fetchPopularApi(getState().session, 1));
 
 export const loadMorePopular = createAsyncThunk<
 	MovieList,
 	void,
-	{ state: RootReducerState }
+	{ state: RootState }
 >("popular/loadMore", async (_, { getState }) =>
 	fetchPopularApi(getState().session, getState().popular.currentPage + 1)
 );

@@ -1,16 +1,9 @@
 import { useAuth } from "./utils.js";
 import React from "react";
-import {
-	Route,
-	RouteProps,
-	Redirect,
-	RouteComponentProps,
-} from "react-router-dom";
+import { Route, RouteProps, Redirect } from "react-router-dom";
 
 interface PrivateRouteProps extends RouteProps {
-	component:
-		| React.ComponentType<RouteComponentProps<any>>
-		| React.ComponentType<any>;
+	component: any;
 }
 
 export const PrivateRoute = ({

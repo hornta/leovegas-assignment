@@ -1,6 +1,7 @@
 .top-header {
 	position: sticky;
 	top: 0;
+	z-index: 1;
 }
 
 .top-nav {
@@ -14,7 +15,7 @@
 }
 
 .top-nav-inner a {
-	padding: 1em;
+	padding: 0.5em;
 	display: flex;
 	align-items: center;
 }
@@ -25,4 +26,10 @@
 
 .top-nav-inner .top-menu-active-item {
 	background-color: #8fcb9b;
+}
+
+@media screen and (min-width: 400px) {
+	.top-nav-inner a {
+		padding: 1em;
+	}
 }

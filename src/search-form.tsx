@@ -44,6 +44,7 @@ export const SearchForm = ({
 		<form role="search" onSubmit={handleSubmit}>
 			<input
 				type="text"
+				role="searchbox"
 				value={searchTerm}
 				onKeyDown={handleKeyDown}
 				onFocus={handleFocus}

@@ -2,11 +2,12 @@
 	"scripts": {
 		"start": "snowpack dev",
 		"build": "snowpack build",
-		"test": "web-test-runner \"src/**/*.test.tsx\"",
+		"test": "web-test-runner \"src/**/*.test.{ts,tsx}\"",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
 	},
 	"dependencies": {
+		"@react-hook/resize-observer": "^1.2.0",
 		"@reduxjs/toolkit": "^1.5.1",
 		"color-hash": "^2.0.0",
 		"prop-types": "^15.7.2",
@@ -22,6 +23,7 @@
 		"@snowpack/plugin-typescript": "^1.2.1",
 		"@snowpack/web-test-runner-plugin": "^0.2.2",
 		"@testing-library/react": "^11.2.6",
+		"@testing-library/user-event": "^13.1.5",
 		"@types/chai": "^4.2.16",
 		"@types/color-hash": "^1.0.0",
 		"@types/mocha": "^8.2.2",
@@ -124,7 +126,8 @@
 						}
 					}
 				}
-			]
+			],
+			"unicorn/prefer-module": "off"
 		},
 		"overrides": [
 			{

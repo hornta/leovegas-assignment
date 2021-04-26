@@ -33,7 +33,7 @@ export const ScreenLogin = () => {
 
 	return (
 		<main className="screen-login">
-			<p>Authentication is required in order to maintain your own lists.</p>
+			<p>Please authenticate yourself so that you can maintain your lists.</p>
 			<Button variant={ButtonVariant.PRIMARY} onClick={handleLogin}>
 				Login with TMDB
 			</Button>

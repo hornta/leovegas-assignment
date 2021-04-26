@@ -1,0 +1,43 @@
+.screen-movie-container {
+	background-position-x: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	opacity: 0;
+}
+
+.screen-movie-fade {
+	animation: fade-in 1s forwards;
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.screen-movie-wrapper {
+	padding: 1em;
+}
+
+.screen-movie {
+	padding: 1em;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+.screen-movie-heading {
+	display: flex;
+}
+
+.screen-movie h1 {
+	margin-top: 0;
+	margin-bottom: 0.4em;
+}
+
+.screen-movie-list-actions {
+	flex-grow: 1;
+	text-align: right;
+}

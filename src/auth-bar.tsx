@@ -9,7 +9,7 @@ import {
 } from "./selectors.js";
 import { useAppDispatch, useAppSelector } from "./store/store.js";
 
-export const AuthBar = (): JSX.Element => {
+export const AuthBar = (): any => {
 	const dispatch = useAppDispatch();
 	useEffect(() => {
 		dispatch(getAccountDetails());

@@ -1,8 +1,5 @@
-.movie-list-item {
+.movie-item {
 	display: flex;
-}
-
-.movie-list-item {
 	border-radius: 4px;
 	overflow: hidden;
 }

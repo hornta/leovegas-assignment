@@ -15,6 +15,9 @@ export const makeTmdbPath = (subPath: string): string => {
 	return path;
 };
 
+export const makeTmdbImagePath = (append: string) =>
+	`https://image.tmdb.org/t/p/${append}`;
+
 export const useAuth = (): boolean => {
 	const sessionId = useAppSelector(selectSession);
 	return sessionId === "" ? false : true;

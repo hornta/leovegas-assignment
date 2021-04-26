@@ -1,5 +1,4 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import type { DefaultRootState } from "react-redux";
 import { fetchPopular, loadMorePopular } from "../actions/popular-actions.js";
 import {
 	loadMoreSearchResults,
@@ -9,34 +8,26 @@ import {
 	fetchWatchlist,
 	loadMoreWatchlist,
 } from "../actions/watchlist-actions.js";
-import { accountReducer, AccountReducerState } from "./account-reducer.js";
-import { genresReducer, GenresReducerState } from "./genres-reducer.js";
-import {
-	makeMovieListReducer,
-	MovieListReducerState,
-} from "./make-movie-list-reducer.js";
-import {
-	searchTermReducer,
-	SearchTermReducerState,
-} from "./search-term-reducer.js";
-import { sessionReducer, SessionReducerState } from "./session-id-reducer.js";
+import { accountReducer } from "./account-reducer.js";
+import { genresReducer } from "./genres-reducer.js";
+import { makeMovieListReducer } from "./make-movie-list-reducer.js";
+import { movieReducer } from "./movie-reducer.js";
+import { searchTermReducer } from "./search-term-reducer.js";
+import { sessionReducer } from "./session-id-reducer.js";
 
-export interface RootReducerState extends DefaultRootState {
-	searchTerm: SearchTermReducerState;
-	search: MovieListReducerState;
-	watchlist: MovieListReducerState;
-	popular: MovieListReducerState;
-	session: SessionReducerState;
-	account: AccountReducerState;
-	genres: GenresReducerState;
-}
+const search = makeMovieListReducer(searchMovies, loadMoreSearchResults);
+const watchlist = makeMovieListReducer(fetchWatchlist, loadMoreWatchlist);
+const popular = makeMovieListReducer(fetchPopular, loadMorePopular);
 
 export const rootReducer = combineReducers({
+	search,
+	watchlist,
+	popular,
 	searchTerm: searchTermReducer,
-	search: makeMovieListReducer(searchMovies, loadMoreSearchResults),
-	watchlist: makeMovieListReducer(fetchWatchlist, loadMoreWatchlist),
-	popular: makeMovieListReducer(fetchPopular, loadMorePopular),
 	session: sessionReducer,
 	account: accountReducer,
 	genres: genresReducer,
+	movie: movieReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
