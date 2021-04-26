@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { ScreenSearch } from "./screen-search.tsx";
+import { ScreenSearch } from "./screen-search";
 import userEvent from "@testing-library/user-event";
 import { makeStore } from "./store/store.js";
 import { Provider } from "react-redux";
