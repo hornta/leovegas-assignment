@@ -1,8 +1,5 @@
-https://gracious-stonebraker-94dc28.netlify.app/
+DEMO: https://gracious-stonebraker-94dc28.netlify.app/
 
-# todo:
+Needs to authenticate to TMDB to check your watchlist and add/remove movies from the watchlist.
 
-add proptypes to everything
-error loading states
-check acceisibility
-add tests
+Uses [Snowpack](https://www.snowpack.dev/) as the web framework. Full SPA with React, Redux and TypeScript.
