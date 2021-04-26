@@ -10,5 +10,16 @@ Uses [Snowpack](https://www.snowpack.dev/) as the underlying web framework. Full
 
 ## Screenshots
 
-[](docs/screenshots/login-wide.png)
-[](docs/screenshots/login-narrow.png)
+![](docs/screenshots/popular-wide.png)
+![](docs/screenshots/search-empty-wide.png)
+![](docs/screenshots/search-results-wide.png)
+![](docs/screenshots/login-wide.png)
+![](docs/screenshots/watchlist-wide.png)
+![](docs/screenshots/movie-wide.png)
+
+![](docs/screenshots/popular-narrow.png)
+![](docs/screenshots/search-empty-narrow.png)
+![](docs/screenshots/search-results-narrow.png)
+![](docs/screenshots/login-narrow.png)
+![](docs/screenshots/watchlist-narrow.png)
+![](docs/screenshots/movie-narrow.png)
