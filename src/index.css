@@ -22,3 +22,31 @@ a {
 	color: unset;
 	text-decoration: none;
 }
+
+.data-provider-attribution {
+	position: fixed;
+	bottom: 0.5em;
+	right: 0.5em;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	max-width: 30%;
+	flex-wrap: wrap;
+}
+
+.data-provider-attribution img {
+	height: 0.7em;
+	display: block;
+	padding-left: 1em;
+}
+
+@media screen and (min-width: 400px) {
+	.data-provider-attribution {
+		right: 1em;
+		bottom: 1em;
+	}
+
+	.data-provider-attribution img {
+		height: 1em;
+	}
+}
