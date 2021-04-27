@@ -4,7 +4,7 @@ import { rootReducer, RootState } from "../reducers/index.js";
 import { errorLoggerMw } from "./middlewares/error-logger-mw.js";
 import { persistSessionMw } from "./middlewares/persist-session-mw.js";
 
-export const makeStore = () =>
+export const makeStore = (preloadedState: RootState | undefined) =>
 	configureStore({
 		reducer: rootReducer,
 		middleware: (getDefaultMiddleware) => [
@@ -12,6 +12,7 @@ export const makeStore = () =>
 			errorLoggerMw,
 			persistSessionMw,
 		],
+		preloadedState,
 	});
 
 export const store = makeStore();
