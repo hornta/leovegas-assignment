@@ -37,7 +37,7 @@ a {
 .data-provider-attribution img {
 	height: 0.7em;
 	display: block;
-	padding-left: 1em;
+	padding-left: 0.5em;
 }
 
 @media screen and (min-width: 400px) {
