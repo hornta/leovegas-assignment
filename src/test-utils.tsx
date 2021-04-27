@@ -5,9 +5,10 @@ import PropTypes from "prop-types";
 import { render, RenderOptions } from "@testing-library/react";
 import type { RootState } from "./reducers/index.js";
 import { BrowserRouter } from "react-router-dom";
+import { accountReducer } from "./reducers/account-reducer.js";
 
 interface AllProvidersProps {
-	preloadedState: RootState | undefined;
+	preloadedState?: RootState;
 	children: ReactNode;
 }
 
@@ -21,7 +22,7 @@ const AllProviders: FC<AllProvidersProps> = ({ preloadedState, children }) => {
 };
 
 AllProviders.propTypes = {
-	preloadedState: PropTypes.object,
+	preloadedState: PropTypes.any,
 	children: PropTypes.node,
 };
 
@@ -34,8 +35,8 @@ export const appRender = (
 	ui: React.ReactElement,
 	options?: AppRenderOptions
 ) => {
-	const Wrapper: FC = (props) => (
-		<AllProviders {...props} {...options?.TestProviderProps} />
+	const Wrapper: FC = (props: any) => (
+		<AllProviders {...props} {...options?.providerProps} />
 	);
 
 	render(ui, {
@@ -45,8 +46,8 @@ export const appRender = (
 };
 
 interface ResetUrlArguments {
-	pathname: string;
-	search: Record<string, string>;
+	pathname?: string;
+	search?: Record<string, string>;
 }
 export const resetUrl = ({ pathname, search }: ResetUrlArguments = {}) => {
 	const url = new URL(pathname ?? "/", window.location.origin);

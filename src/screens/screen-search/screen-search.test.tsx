@@ -28,7 +28,9 @@ describe("<ScreenSearch>", () => {
 	it("fills searchbox with search term from url", () => {
 		resetUrl({ search: { search_term: "matrix" } });
 		appRender(<ScreenSearch />);
-		expect(screen.getByRole("searchbox").value).equal("matrix");
+		expect((screen.getByRole("searchbox") as HTMLInputElement).value).equal(
+			"matrix"
+		);
 	});
 
 	it("adds the search term in the url upon searching", () => {
@@ -44,6 +46,6 @@ describe("<ScreenSearch>", () => {
 		appRender(<ScreenSearch />);
 		const searchbox = screen.getByRole("searchbox");
 		fireEvent.focus(searchbox);
-		expect(isTextSelected(searchbox)).equal(true);
+		expect(isTextSelected(searchbox as HTMLInputElement)).equal(true);
 	});
 });
